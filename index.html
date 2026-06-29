@@ -20,8 +20,8 @@
     --text-muted:#8891a8;
     --border:rgba(255,255,255,0.08);
   }
-  html{scroll-behavior:smooth}
-  body{background:var(--navy);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
+  body{position:relative;background:var(--navy);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;overflow-x:hidden;max-width:100%;width:100%;-webkit-font-smoothing:antialiased}
 
   ::selection{background:rgba(245,166,35,0.28);color:#fff}
 
@@ -36,9 +36,9 @@
   }
   /* AURORA GLOWS */
   .glow{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0}
-  .glow-a{width:560px;height:560px;top:-120px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(245,166,35,0.16),transparent 65%);animation:drift 16s ease-in-out infinite}
-  .glow-b{width:480px;height:480px;top:160px;left:8%;background:radial-gradient(circle,rgba(27,66,153,0.30),transparent 68%);animation:drift 20s ease-in-out infinite reverse}
-  .glow-c{width:420px;height:420px;top:120px;right:6%;background:radial-gradient(circle,rgba(42,87,200,0.22),transparent 68%);animation:drift 24s ease-in-out infinite}
+  .glow-a{width:min(560px,120vw);aspect-ratio:1;top:-120px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(245,166,35,0.16),transparent 65%);animation:drift 16s ease-in-out infinite}
+  .glow-b{width:min(480px,90vw);aspect-ratio:1;top:160px;left:8%;background:radial-gradient(circle,rgba(27,66,153,0.30),transparent 68%);animation:drift 20s ease-in-out infinite reverse}
+  .glow-c{width:min(420px,80vw);aspect-ratio:1;top:120px;right:6%;background:radial-gradient(circle,rgba(42,87,200,0.22),transparent 68%);animation:drift 24s ease-in-out infinite}
   @keyframes drift{0%,100%{transform:translate(0,0)}33%{transform:translate(24px,-20px)}66%{transform:translate(-18px,16px)}}
 
   /* NAV */
@@ -131,9 +131,9 @@
   .step-text{font-size:14px;color:var(--text-muted);line-height:1.68}
 
   /* CTA SECTION */
-  .cta-section{text-align:center;padding:120px 24px}
+  .cta-section{text-align:center;padding:120px 24px;position:relative;overflow:hidden}
   .cta-inner{max-width:580px;margin:0 auto;position:relative}
-  .cta-glow{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,0.10) 0%,rgba(27,66,153,0.06) 40%,transparent 70%);pointer-events:none;animation:drift 18s ease-in-out infinite}
+  .cta-glow{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);width:min(520px,110vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,0.10) 0%,rgba(27,66,153,0.06) 40%,transparent 70%);pointer-events:none;animation:drift 18s ease-in-out infinite}
   .store-badges{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:34px;flex-wrap:wrap;position:relative;z-index:2}
   .badge{display:inline-flex;align-items:center;gap:11px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:15px;padding:12px 22px;text-decoration:none;color:var(--text);transition:all .2s}
   .badge:hover{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.22);transform:translateY(-2px)}
@@ -370,7 +370,7 @@
   <div class="footer-logo">Pinola</div>
   <div class="footer-links">
     <a href="privacy-policy.html">Privacy policy</a>
-    <a href="/cdn-cgi/l/email-protection#12736b7673603c73687b687d643c2b2b52757f737b7e3c717d7f">Contact</a>
+    <a href="/cdn-cgi/l/email-protection#07667e63667529667d6e7d6871293e3e47606a666e6b2964686a">Contact</a>
   </div>
   <div class="footer-copy">© 2026 Pinola. All rights reserved.</div>
 </footer>
