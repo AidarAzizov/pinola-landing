@@ -149,9 +149,14 @@
   /* FOOTER */
   footer{padding:36px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;max-width:1040px;margin:0 auto}
   .footer-logo{font-size:16px;font-weight:700;color:var(--text)}
-  .footer-links{display:flex;gap:24px}
+  .footer-links{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
   .footer-links a{font-size:13px;color:var(--text-muted);text-decoration:none;transition:color .2s}
   .footer-links a:hover{color:var(--text)}
+  .footer-contact{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--text-muted)}
+  .footer-dot{color:rgba(255,255,255,0.25)}
+  .footer-email{font:inherit;font-size:13px;color:var(--text-muted);background:none;border:none;padding:0;cursor:pointer;text-decoration:none;transition:color .2s;position:relative}
+  .footer-email:hover{color:var(--text)}
+  .footer-email.copied::after{content:'Copied \\2713';position:absolute;left:0;top:-26px;white-space:nowrap;background:var(--amber);color:#0d1220;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px}
   .footer-copy{font-size:12px;color:var(--text-muted);width:100%}
 
   /* SCROLL REVEAL */
@@ -367,8 +372,12 @@
 <footer>
   <div class="footer-logo">Pinola</div>
   <div class="footer-links">
-    <a href="privacy-policy.html">Privacy policy</a>
-    <a href="/cdn-cgi/l/email-protection#a8c9d1ccc9da86c9d2c1d2c7de869191e8cfc5c9c1c486cbc7c5">Contact</a>
+    <a href="https://pinola-privacy-production.up.railway.app" target="_blank" rel="noopener">Privacy policy</a>
+    <span class="footer-contact">Contact:
+      <a href="https://t.me/live4chill" target="_blank" rel="noopener">Telegram @live4chill</a>
+      <span class="footer-dot">·</span>
+      <button type="button" class="footer-email" id="emailBtn" data-u="4wg3a8q2" data-d="anonaddy.com" aria-label="Copy email address"></button>
+    </span>
   </div>
   <div class="footer-copy">© 2026 Pinola. All rights reserved.</div>
 </footer>
@@ -380,7 +389,7 @@
 /* hide leaflet attribution */
 .leaflet-control-attribution{display:none!important}
 </style>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 (function(){
   /* ---- Leaflet map in the "Two modes" section ---- */
   var map = L.map('mv-leaflet', {
@@ -447,6 +456,22 @@
       }
     }
   }, 1000);
+
+  /* ---- Contact email (assembled in JS so crawlers/Cloudflare never see a literal address) ---- */
+  var emailBtn = document.getElementById('emailBtn');
+  if(emailBtn){
+    var addr = emailBtn.getAttribute('data-u') + '@' + emailBtn.getAttribute('data-d');
+    emailBtn.textContent = addr;
+    emailBtn.addEventListener('click', function(){
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(addr).then(function(){
+          emailBtn.classList.add('copied');
+          setTimeout(function(){ emailBtn.classList.remove('copied'); }, 1600);
+        });
+      }
+      window.location.href = 'mailto:' + addr;
+    });
+  }
 
   /* ---- Feature card pointer glow ---- */
   document.querySelectorAll('.feature-card').forEach(function(card){
